@@ -1,6 +1,7 @@
 <template>
   <div id="modal">
-    <h1>{{ msg }}</h1>
+    <h1>{{msg}}</h1>
+
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>

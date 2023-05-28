@@ -28,6 +28,11 @@ const routes = [
     path: '/entertainment',
     name: 'EntertainmentView',
     component: EntertainmentView
+  },
+  {
+    path: '/facebook',
+    name: 'FacebookView',
+    component: () => import('../views/FacebookView')
   }
 ]
 

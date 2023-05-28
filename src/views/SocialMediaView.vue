@@ -2,7 +2,7 @@
   <div class="socialmedia">
     <ModalSocialMedia></ModalSocialMedia>
 
-    <button style="background: transparent; margin: 5%; margin-left: 20%; margin-top: 15%; border: white">
+    <button v-on:click="open_Facebook" style="background: transparent; margin: 5%; margin-left: 20%; margin-top: 15%; border: white">
       <img v-bind:src="require(`@/assets/${icon_fb}`)" alt="FB" width="150" height="150">
       <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_fb_name}}</p>
     </button>
@@ -12,7 +12,7 @@
         <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_ig_name}}</p>
       </button>
 
-      <button id="add_platform" style="background: transparent; margin: 5%; border: white">
+      <button @click="add_platforms" id="add_platform" style="background: transparent; margin: 5%; border: white">
         <img v-bind:src="require(`@/assets/${icon_ot}`)" alt="OT" width="150" height="150">
         <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_ot_name}}</p>
       </button>
@@ -39,7 +39,20 @@ export default {
       icon_ot_name: 'Add other platform'
     }
   },
+  methods: {
+    afiseaza_mesaj(mesaj) {
+      alert(mesaj)
+    },
+    open_Facebook() {
+      this.$router.push({name: 'FacebookView'})
+    }
+  },
+  created() {
+    //this.afiseaza_mesaj('sunt in created')
+  },
   mounted() {
+    //this.afiseaza_mesaj('sunt in mounted')
+
     let modal = document.getElementById("myModal");
     let button = document.getElementById("add_platform");
     let span = document.getElementsByClassName("close")[0];

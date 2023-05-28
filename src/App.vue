@@ -2,14 +2,17 @@
   <div id="app">
     <nav>
       <router-link to="/">
-        <button style="background: transparent; margin-left: 1%; margin-top: 1%; border: white">
+
+        <button style="background: transparent; margin-left: 1%; margin-top: 0%; border: white">
           <img v-bind:src="require(`@/assets/${icon_hm}`)" alt="HM" width="50" height="50">
         </button>
+
       </router-link>
     </nav>
+
     <router-view/>
 
-    <button id="darkmode" style="background: transparent; margin-left: 90%; margin-top: 1%; border: white">
+    <button v-on:click="activare_dark_mode" class="dark-mode" style="background: transparent; margin-left: 90%; margin-top: 1%; border: white">
       <img v-bind:src="require(`@/assets/${icon_dm}`)" alt="DM" width="50" height="50">
     </button>
 
@@ -28,12 +31,11 @@ export default {
       icon_hm: 'home.png'
     }
   },
-  mounted() {
-    let button = document.getElementById("darkmode")
-    button.addEventListener("click", function() {
+  methods: {
+    activare_dark_mode() {
       let element = document.body;
       element.classList.toggle("dark-mode");
-    })
+    }
   }
 }
 

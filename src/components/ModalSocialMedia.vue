@@ -1,22 +1,23 @@
 <template>
   <div id="modal">
-    <h1>{{ msg }}</h1>
+    <h1>{{msg}}</h1>
+
     <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
+      <div class="modal-content">
+        <span class="close">&times;</span>
 
-      <button style="background: white; margin: 5%; margin-left: 15%; border: white">
-        <img v-bind:src="require(`@/assets/${icon_tw}`)" alt="TW" width="150" height="150">
-        <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_tw_name}}</p>
-      </button>
+        <button style="background: white; margin: 5%; margin-left: 15%; border: white">
+          <img v-bind:src="require(`@/assets/${icon_tw}`)" alt="TW" width="150" height="150">
+          <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_tw_name}}</p>
+        </button>
 
-      <button style="background: white; margin: 5%; border: white">
-        <img v-bind:src="require(`@/assets/${icon_in}`)" alt="IN" width="150" height="150">
-        <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_in_name}}</p>
-      </button>
+        <button style="background: white; margin: 5%; border: white">
+          <img v-bind:src="require(`@/assets/${icon_in}`)" alt="IN" width="150" height="150">
+          <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_in_name}}</p>
+        </button>
 
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
