@@ -12,7 +12,7 @@
         <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_tt_name}}</p>
       </button>
 
-      <button id="add_platform" style="background: transparent; margin: 5%; border: white">
+      <button v-on:click="show_modal" style="background: transparent; margin: 5%; border: white">
         <img v-bind:src="require(`@/assets/${icon_ot}`)" alt="OT" width="150" height="150">
         <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_ot_name}}</p>
       </button>
@@ -39,25 +39,15 @@ export default {
       icon_ot_name: 'Add other platform'
     }
   },
+  methods: {
+    show_modal() {
+      document.getElementById("myModal").style.display = 'block'
+    }
+  },
   mounted() {
-    let modal = document.getElementById("myModal");
-    let button = document.getElementById("add_platform");
-    let span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-    button.addEventListener("click", function() {
-      modal.style.display = "block"
-    })
-
-    //When the user clicks on <span> (x), close the modal
-    span.addEventListener("click", function() {
-      modal.style.display = "none";
-    })
-
-    //When the user clicks anywhere outside of the modal, close it
     window.addEventListener("click", function(event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
+      if (event.target === document.getElementById("myModal")) {
+        document.getElementById("myModal").style.display = "none";
       }
     })
   }

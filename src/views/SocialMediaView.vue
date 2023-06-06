@@ -12,7 +12,7 @@
         <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_ig_name}}</p>
       </button>
 
-      <button @click="add_platforms" id="add_platform" style="background: transparent; margin: 5%; border: white">
+      <button v-on:click="show_modal" style="background: transparent; margin: 5%; border: white">
         <img v-bind:src="require(`@/assets/${icon_ot}`)" alt="OT" width="150" height="150">
         <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_ot_name}}</p>
       </button>
@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      icon_fb: 'facebook.png',
+      icon_fb: 'facebook_version_2.png',
       icon_ig: 'instagram.png',
       icon_ot: 'campaign.png',
       icon_fb_name: 'Facebook',
@@ -40,37 +40,17 @@ export default {
     }
   },
   methods: {
-    afiseaza_mesaj(mesaj) {
-      alert(mesaj)
-    },
     open_Facebook() {
       this.$router.push({name: 'FacebookView'})
+    },
+    show_modal() {
+      document.getElementById("myModal").style.display = 'block'
     }
   },
-  created() {
-    //this.afiseaza_mesaj('sunt in created')
-  },
   mounted() {
-    //this.afiseaza_mesaj('sunt in mounted')
-
-    let modal = document.getElementById("myModal");
-    let button = document.getElementById("add_platform");
-    let span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-    button.addEventListener("click", function() {
-      modal.style.display = "block"
-    })
-
-    //When the user clicks on <span> (x), close the modal
-    span.addEventListener("click", function() {
-      modal.style.display = "none";
-    })
-
-    //When the user clicks anywhere outside of the modal, close it
     window.addEventListener("click", function(event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
+      if (event.target === document.getElementById("myModal")) {
+        document.getElementById("myModal").style.display = "none";
       }
     })
   }

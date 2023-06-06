@@ -4,7 +4,7 @@
 
     <div id="myModal" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <span v-on:click="close_modal" class="close">&times;</span>
 
         <button style="background: white; margin: 5%; margin-left: 15%; border: white">
           <img v-bind:src="require(`@/assets/${icon_tw}`)" alt="TW" width="150" height="150">
@@ -35,6 +35,11 @@ export default {
       icon_tw_name: 'Twitter',
       icon_in_name: 'Linkedin',
     }
+  },
+  methods: {
+    close_modal() {
+      document.getElementById("myModal").style.display = 'none'
+    },
   }
 }
 

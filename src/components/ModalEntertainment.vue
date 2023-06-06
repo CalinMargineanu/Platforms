@@ -4,24 +4,12 @@
 
     <div id="myModal" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <span v-on:click="close_modal" class="close">&times;</span>
 
         <button style="background: white; margin: 5%; margin-left: 15%; border: white">
           <img v-bind:src="require(`@/assets/${icon_pi}`)" alt="TW" width="150" height="150">
           <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_pi_name}}</p>
         </button>
-
-        <br>
-        <label>Introduce-ti email-ul</label>
-        <input v-model="email" type="email">
-        <br>
-        <label>Nume</label>
-        <input v-model="nume" type="text">
-        <button v-on:click="save">Save</button>
-        <br>
-        <label>input</label>
-        <input v-model="str" type="text">
-        <p>lungime: {{calculeaza_lungime}}</p>
 
       </div>
     </div>
@@ -35,49 +23,16 @@ export default {
   props: {
     msg: String
   },
-  computed: {
-    calculeaza_lungime() {
-      return this.str !== null ? this.str.length : 0
-    }
-  },
   data() {
     return {
       icon_pi: 'pinterest.png',
       icon_pi_name: 'Pinterest',
-      email: 'margineanu.cd@gmail.com',
-      resurse_backend: [
-        {
-          nume: 'Nan',
-          adresa: 'nan@gmail.com',
-        },
-        {
-          nume: 'Calin',
-          adresa: 'margineanu.cd@gmail.com'
-        }
-      ],
-      nume: '',
-      str: null
     }
   },
   methods: {
-    save() {
-      this.resurse_backend.push({nume: this.nume, adresa: this.email})
-      localStorage.setItem('email', this.email)
-      localStorage.setItem('bc_resurse', JSON.stringify(this.resurse_backend))
-    }
-  },
-  mounted() {
-    let save_email = localStorage.getItem('email')
-    if (save_email == null) {
-      //alert('nu am salvat nimic')
-    } else {
-      //alert(save_email)
-    }
-    save_email == null ? alert('nu am salvat nimic') : alert(save_email)
-    //alert(save_email)
-    let br = localStorage.getItem('bc_resurse')
-    let new_backend_resource = JSON.parse(br)
-    console.log(new_backend_resource)
+    close_modal() {
+      document.getElementById("myModal").style.display = 'none'
+    },
   }
 }
 
