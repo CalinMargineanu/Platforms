@@ -26,7 +26,8 @@
       <div class="card_container">
         <p><b>{{card.email}}</b></p>
         <p>{{ card.status }} <span ref="dot" id="dot" class="dot">{{card.status_dot}}</span> </p>
-        <button ref="logout" v-on:click="logout('true', index)" v-on:dblclick="relogin('true', index)" class="button_logout">{{card.buttons}}</button>
+        <button ref="logout" v-on:click="logout(index)" v-on:dblclick="relogin('true', index)" class="button_logout">{{card.button_logout}}</button>
+        <button style="display: none" ref="login" v-on:click="relogin(index)" class="button_login">{{card.button_login}}</button>
       </div>
 
       <!--    Modal-->
@@ -65,6 +66,7 @@ export default {
       forgot_password: "Forgot password?",
       profile_image: 'avatar.png',
       button_logout: 'Logout',
+      button_login: 'Login',
       button_remove: 'Remove',
       button_cancel: 'Cancel',
       email_input: '',
@@ -79,7 +81,7 @@ export default {
     login() {
       if (((!/^[^@]+@\w+(\.\w+)+\w$/.test(this.email_input)) === false) && (this.password_input !== '')) {
         this.status = 'Active'
-        this.resurse_backend.push({email: this.email_input, password: this.password_input, status: this.status, buttons: this.button_logout, status_dot: this.status_dot})
+        this.resurse_backend.push({email: this.email_input, password: this.password_input, status: this.status, status_dot: this.status_dot, button_logout: this.button_logout, button_login: this.button_login})
         localStorage.setItem('Email', this.email_input)
         localStorage.setItem('Password', this.password_input)
         localStorage.setItem('Resurse BackEnd', JSON.stringify(this.resurse_backend))
@@ -88,18 +90,20 @@ export default {
         this.password_input = ''
       }
     },
-    logout(login, index) {
-      if (login === 'true') {
+    logout(index) {
         console.log(index)
         this.resurse_backend[index].status = "Inactive"
         this.resurse_backend[index].buttons = "Login"
-      }
+        this.$refs.logout[index].style.display = 'none'
+        this.$refs.login[index].style.display = 'block'
+        this.$refs.dot[index].style.backgroundColor = 'darkgrey'
     },
-    relogin(logout, index) {
-      if (logout === 'true') {
+    relogin(index) {
         this.resurse_backend[index].status = 'Active'
         this.resurse_backend[index].buttons = 'Logout'
-      }
+        this.$refs.login[index].style.display = 'none'
+        this.$refs.logout[index].style.display = 'block'
+        this.$refs.dot[index].style.backgroundColor = 'limegreen'
     },
     remove(button, index) {
       console.log(index)
@@ -243,6 +247,18 @@ button:hover {
 }
 
 button_logout:hover {
+  background-color: #45a049;
+}
+
+.button_login {
+  width: 45%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2vw;
+}
+
+button_login:hover {
   background-color: #45a049;
 }
 
