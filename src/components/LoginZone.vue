@@ -8,7 +8,7 @@
 
       <input ref="email" v-model="email_input" type="text" placeholder="Email" name="email" required>
       <br>
-      <input v-on:keyup.enter="login" ref="password" v-model="password_input" type="password" placeholder="Password">
+      <input v-on:keyup.enter="login(index)" ref="password" v-model="password_input" type="password" placeholder="Password">
       <br>
       <input v-on:click="login()" v-on:keyup.enter="login" type="submit" value="Login">
     </div>
@@ -59,6 +59,8 @@ export default {
   props: {
     msg: String
   },
+  components: {
+  },
   data() {
     return {
       login_zone_text: "Add a new account",
@@ -73,7 +75,8 @@ export default {
       password_input: '',
       email_card: '',
       status: '',
-      status_dot: '', // de rezolvat
+      status_dot: '',
+      accounts_number: '',
       resurse_backend: []
     }
   },
@@ -81,29 +84,54 @@ export default {
     login() {
       if (((!/^[^@]+@\w+(\.\w+)+\w$/.test(this.email_input)) === false) && (this.password_input !== '')) {
         this.status = 'Active'
-        this.resurse_backend.push({email: this.email_input, password: this.password_input, status: this.status, status_dot: this.status_dot, button_logout: this.button_logout, button_login: this.button_login})
+        this.resurse_backend.push({
+          email: this.email_input,
+          password: this.password_input,
+          status: this.status,
+          status_dot: this.status_dot,
+          button_logout: this.button_logout,
+          button_login: this.button_login,
+          accounts_number: this.accounts_number
+        })
         localStorage.setItem('Email', this.email_input)
         localStorage.setItem('Password', this.password_input)
         localStorage.setItem('Resurse BackEnd', JSON.stringify(this.resurse_backend))
         this.email_card = this.email_input
         this.email_input = ''
         this.password_input = ''
+        for (let i = 0; i < this.resurse_backend.length; i++) {
+          document.getElementById('facebook').style.display = 'block'
+          document.getElementById('dot_facebook').style.display = 'block'
+          this.accounts_number = i + 1
+          document.getElementById('dot_facebook').innerHTML = this.accounts_number
+        }
       }
     },
     logout(index) {
-        console.log(index)
-        this.resurse_backend[index].status = "Inactive"
-        this.resurse_backend[index].buttons = "Login"
-        this.$refs.logout[index].style.display = 'none'
-        this.$refs.login[index].style.display = 'block'
-        this.$refs.dot[index].style.backgroundColor = 'darkgrey'
+      console.log(index)
+      this.resurse_backend[index].status = "Inactive"
+      this.resurse_backend[index].buttons = "Login"
+      this.$refs.logout[index].style.display = 'none'
+      this.$refs.login[index].style.display = 'block'
+      this.$refs.dot[index].style.backgroundColor = 'darkgrey'
+      this.accounts_number = this.accounts_number - 1
+      document.getElementById('dot_facebook').innerHTML = this.accounts_number
+      if (this.accounts_number === 0) {
+        document.getElementById('facebook').style.display = 'none'
+      }
     },
     relogin(index) {
-        this.resurse_backend[index].status = 'Active'
-        this.resurse_backend[index].buttons = 'Logout'
-        this.$refs.login[index].style.display = 'none'
-        this.$refs.logout[index].style.display = 'block'
-        this.$refs.dot[index].style.backgroundColor = 'limegreen'
+      console.log(index)
+      this.resurse_backend[index].status = 'Active'
+      this.resurse_backend[index].buttons = 'Logout'
+      this.$refs.login[index].style.display = 'none'
+      this.$refs.logout[index].style.display = 'block'
+      this.$refs.dot[index].style.backgroundColor = 'limegreen'
+      this.accounts_number = this.accounts_number + 1
+      document.getElementById('dot_facebook').innerHTML = this.accounts_number
+      if (this.accounts_number > 0) {
+        document.getElementById('facebook').style.display = 'block'
+      }
     },
     remove(button, index) {
       console.log(index)
@@ -113,6 +141,11 @@ export default {
       if (button === 'remove') {
         this.resurse_backend.splice(index, 1)
         this.$refs.modal[index].style.display = "none"
+        this.accounts_number = this.accounts_number - 1
+        document.getElementById('dot_facebook').innerHTML = this.accounts_number
+        if (this.accounts_number === 0) {
+          document.getElementById('facebook').style.display = 'none'
+        }
       } else if (button === 'cancel') {
         this.$refs.modal[index].style.display = "none"
       }

@@ -12,6 +12,8 @@
 
     <router-view/>
 
+    <PlatformsTabs></PlatformsTabs>
+
     <button v-on:click="activare_dark_mode" class="dark-mode" style="background: transparent; margin-left: 90%; margin-top: 1%; border: white">
       <img v-bind:src="require(`@/assets/${icon_dm}`)" alt="DM" width="50" height="50">
     </button>
@@ -21,9 +23,12 @@
 
 <script>
 
+import PlatformsTabs from '@/components/PlatformsTabs.vue'
+
 export default {
   name: 'App',
   components: {
+    PlatformsTabs
   },
   data() {
     return {
