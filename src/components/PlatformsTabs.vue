@@ -6,7 +6,7 @@
 
       <button ref="facebook" id="facebook" class="buttons">
         <img v-bind:src="require(`@/assets/${icon_fb}`)" width="70" height="70" alt="FB">
-        <span ref="dot_facebook" id="dot_facebook" class="dot"></span>
+        <span ref="dot_facebook" id="dot_facebook" class="dot">{{rb}}</span>
       </button>
 
       <button class="buttons">
@@ -68,7 +68,14 @@ export default {
       icon_yt: 'youtube.png',
       icon_tt: 'tiktok.png',
       icon_pi: 'pinterest.png',
+      accounts_number: [],
+      rb: []
     }
+  },
+  mounted() {
+    let resurse_backend_local = localStorage.getItem("Resurse BackEnd")
+    this.rb = JSON.parse(resurse_backend_local)
+    console.log(this.rb)
   }
 }
 </script>
@@ -89,7 +96,7 @@ export default {
 }
 
 .buttons:hover {
-  background-color: #45a049;
+  background-color: whitesmoke;
 }
 
 .dot {

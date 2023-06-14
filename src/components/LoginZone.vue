@@ -4,11 +4,11 @@
 
 <!--    Login zone-->
     <div class="login_zone_container">
-      <h1 ref="h1" style="text-align:center; font-size: xx-large">{{login_zone_text}}</h1>
+      <h1 ref="h1" id="h1" style="text-align:center; font-size: xx-large">{{login_zone_text}}</h1>
 
       <input ref="email" v-model="email_input" type="text" placeholder="Email" name="email" required>
       <br>
-      <input v-on:keyup.enter="login(index)" ref="password" v-model="password_input" type="password" placeholder="Password">
+      <input v-on:keyup.enter="login()" ref="password" v-model="password_input" type="password" placeholder="Password">
       <br>
       <input v-on:click="login()" v-on:keyup.enter="login" type="submit" value="Login">
     </div>
@@ -26,7 +26,7 @@
       <div class="card_container">
         <p><b>{{card.email}}</b></p>
         <p>{{ card.status }} <span ref="dot" id="dot" class="dot">{{card.status_dot}}</span> </p>
-        <button ref="logout" v-on:click="logout(index)" v-on:dblclick="relogin('true', index)" class="button_logout">{{card.button_logout}}</button>
+        <button ref="logout" v-on:click="logout(index)" class="button_logout">{{card.button_logout}}</button>
         <button style="display: none" ref="login" v-on:click="relogin(index)" class="button_login">{{card.button_login}}</button>
       </div>
 
@@ -41,9 +41,9 @@
 
       <div ref="modal_platform" id="modal_platform" class="modal_platform">
         <div class="modal_platform_content">
-          <span ref="minimize_platform_content" id="minimize_platform_content" class="minimize_platform_content">_</span>
           <span v-on:click="close_modal_platform(index)" ref="close_platform_content" id="close_platform_content" class="close_platform_content">&times;</span>
-          <h1 style="font-size: small">{{card.email}}</h1>
+          <h1 style="font-size: small; margin-top: -1%; margin-left: -1%">{{card.email}}</h1>
+          <iframe src="https://www.facebook.com" class="iframe"></iframe>
         </div>
       </div>
 
@@ -77,11 +77,12 @@ export default {
       status: '',
       status_dot: '',
       accounts_number: '',
-      resurse_backend: []
+      resurse_backend: [],
     }
   },
   methods: {
     login() {
+      console.log('inainte creare obiect' + this.resurse_backend)
       if (((!/^[^@]+@\w+(\.\w+)+\w$/.test(this.email_input)) === false) && (this.password_input !== '')) {
         this.status = 'Active'
         this.resurse_backend.push({
@@ -99,12 +100,13 @@ export default {
         this.email_card = this.email_input
         this.email_input = ''
         this.password_input = ''
-        for (let i = 0; i < this.resurse_backend.length; i++) {
+/*        for (let i = 0; i < this.resurse_backend.length; i++) {
           document.getElementById('facebook').style.display = 'block'
           document.getElementById('dot_facebook').style.display = 'block'
           this.accounts_number = i + 1
           document.getElementById('dot_facebook').innerHTML = this.accounts_number
-        }
+        }*/
+        console.log('dupa creare obiect' + this.resurse_backend)
       }
     },
     logout(index) {
@@ -183,7 +185,6 @@ export default {
   width: 40%;
   margin-left: 30%;
   margin-top: -7%;
-  position: absolute;
 }
 
 /* style inputs and link buttons */
@@ -217,10 +218,7 @@ input[type=submit]:hover {
   background-color: darkgrey;
   padding: 20px 0 20px 0;
   width: 40%;
-  margin-left: 30%;
-  margin-top: 10%;
-  float: left;
-  position: absolute;
+  margin: auto;
 }
 
 .button {
@@ -351,33 +349,16 @@ button_login:hover {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: none;
   width: 90%;
-  height: 70%;
-
-}
-
-/* The Close Button */
-.minimize_platform_content {
-  position: fixed;
-  margin-left: 87%;
-  margin-top: -1.2%;
-  color: #aaaaaa;
-  float: right;
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.minimize_platform_content:hover,
-.minimize_platform_content:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+  height: 80%;
+  border-radius: 8px;
 }
 
 /* The Close Button */
 .close_platform_content {
   color: #aaaaaa;
+  margin-top: -1%;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -388,6 +369,14 @@ button_login:hover {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.iframe {
+  width: 1365px;
+  height: 590px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border: none;
+  border-radius: 8px;
 }
 
 </style>
