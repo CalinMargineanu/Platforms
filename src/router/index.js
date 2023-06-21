@@ -33,6 +33,51 @@ const routes = [
     path: '/facebook',
     name: 'FacebookView',
     component: () => import('../views/FacebookView')
+  },
+  {
+    path: '/instagram',
+    name: 'InstagramView',
+    component: () => import('../views/InstagramView')
+  },
+  {
+    path: '/twitter',
+    name: 'TwitterView',
+    component: () => import('../views/TwitterView')
+  },
+  {
+    path: '/linkedin',
+    name: 'LinkedinView',
+    component: () => import('../views/LinkedinView')
+  },
+  {
+    path: '/gmail',
+    name: 'GmailView',
+    component: () => import('../views/GmailView')
+  },
+  {
+    path: '/yahoo',
+    name: 'YahooView',
+    component: () => import('../views/YahooView')
+  },
+  {
+    path: '/outlook',
+    name: 'OutlookView',
+    component: () => import('../views/OutlookView')
+  },
+  {
+    path: '/youtube',
+    name: 'YoutubeView',
+    component: () => import('../views/YoutubeView')
+  },
+  {
+    path: '/tiktok',
+    name: 'TiktokView',
+    component: () => import('../views/TiktokView')
+  },
+  {
+    path: '/pinterest',
+    name: 'PinterestView',
+    component: () => import('../views/PinterestView')
   }
 ]
 

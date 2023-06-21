@@ -1,18 +1,18 @@
 <template>
   <div class="home">
 
-    <button v-on:click="open_Social_Media()" style="background: transparent; margin: 5%; margin-left: 20%; margin-top: 15%; border: white">
-      <img v-bind:src="require(`@/assets/${icon_sm}`)" alt="SM" width="150" height="150">
+    <button v-on:click="open_Social_Media()" class="buttons_home">
+      <img v-bind:src="require(`@/assets/${icon_sm}`)" alt="SM" class="icons">
       <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_sm_name}}</p>
     </button>
 
-    <button v-on:click="open_Email()" style="background: transparent; margin: 5%; border: white">
-      <img v-bind:src="require(`@/assets/${icon_em}`)" alt="EM" width="150" height="150">
+    <button v-on:click="open_Email()" class="buttons_home">
+      <img v-bind:src="require(`@/assets/${icon_em}`)" alt="EM" class="icons">
       <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_em_name}}</p>
     </button>
 
-    <button v-on:click="open_Entertainment()" style="background: transparent; margin: 5%; border: white">
-      <img v-bind:src="require(`@/assets/${icon_et}`)" alt="ET" width="150" height="150">
+    <button v-on:click="open_Entertainment()" class="buttons_home">
+      <img v-bind:src="require(`@/assets/${icon_et}`)" alt="ET" class="icons">
       <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_et_name}}</p>
     </button>
 
@@ -49,3 +49,30 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.home {
+  text-align: center;
+}
+
+.icons {
+  width: 150px;
+  height: 150px;
+}
+
+.buttons_home {
+  background: transparent;
+  margin: 5%;
+  margin-top: 8%;
+  border: white
+}
+
+.buttons_home:hover {
+  cursor: pointer;
+  transform: scale(1.25);
+  background: #FFF;
+  color: #000;
+}
+
+</style>

@@ -1,18 +1,18 @@
 <template>
   <div class="facebook">
-    <LoginZone></LoginZone>
+    <FacebookLoginZone></FacebookLoginZone>
 
   </div>
 </template>
 
 <script>
 
-import LoginZone from '@/components/LoginZone.vue'
+import FacebookLoginZone from '@/components/FacebookLoginZone.vue'
 
 export default {
   name: "FacebookView",
   components: {
-    LoginZone
+    FacebookLoginZone
   }
 }
 

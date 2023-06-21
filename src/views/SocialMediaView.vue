@@ -1,19 +1,19 @@
 <template>
-  <div class="socialmedia">
+  <div class="social_media">
     <ModalSocialMedia></ModalSocialMedia>
 
-    <button v-on:click="open_Facebook" style="background: transparent; margin: 5%; margin-left: 20%; margin-top: 15%; border: white">
-      <img v-bind:src="require(`@/assets/${icon_fb}`)" alt="FB" width="150" height="150">
+    <button v-on:click="open_Facebook" class="buttons_social_media">
+      <img v-bind:src="require(`@/assets/${icon_fb}`)" alt="FB" class="icons">
       <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_fb_name}}</p>
     </button>
 
-      <button style="background: transparent; margin: 5%; border: white">
-        <img v-bind:src="require(`@/assets/${icon_ig}`)" alt="IG" width="150" height="150">
+      <button v-on:click="open_Instagram" class="buttons_social_media">
+        <img v-bind:src="require(`@/assets/${icon_ig}`)" alt="IG" class="icons">
         <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_ig_name}}</p>
       </button>
 
-      <button v-on:click="show_modal" style="background: transparent; margin: 5%; border: white">
-        <img v-bind:src="require(`@/assets/${icon_ot}`)" alt="OT" width="150" height="150">
+      <button v-on:click="show_modal" class="buttons_social_media">
+        <img v-bind:src="require(`@/assets/${icon_ot}`)" alt="OT" class="icons">
         <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_ot_name}}</p>
       </button>
 
@@ -43,6 +43,9 @@ export default {
     open_Facebook() {
       this.$router.push({name: 'FacebookView'})
     },
+    open_Instagram() {
+      this.$router.push({name: 'InstagramView'})
+    },
     show_modal() {
       document.getElementById("myModal").style.display = 'block'
     }
@@ -56,7 +59,31 @@ export default {
   }
 }
 
-
-
-
 </script>
+
+<style>
+
+.social_media {
+  text-align: center;
+}
+
+.icons {
+  width: 150px;
+  height: 150px;
+}
+
+.buttons_social_media {
+  background: transparent;
+  margin: 5%;
+  margin-top: 8%;
+  border: white
+}
+
+.buttons_social_media:hover {
+  cursor: pointer;
+  transform: scale(1.25);
+  background: #FFF;
+  color: #000;
+}
+
+</style>

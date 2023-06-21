@@ -6,8 +6,8 @@
       <div class="modal-content">
         <span v-on:click="close_modal" class="close">&times;</span>
 
-        <button style="background: white; margin: 5%; margin-left: 15%; border: white">
-          <img v-bind:src="require(`@/assets/${icon_pi}`)" alt="TW" width="150" height="150">
+        <button v-on:click="open_Pinterest" class="buttons_modal_entertainment">
+          <img v-bind:src="require(`@/assets/${icon_pi}`)" alt="TW" class="icons">
           <p style="font-family: Arial; color: cornflowerblue; font-size: 200%">{{icon_pi_name}}</p>
         </button>
 
@@ -30,6 +30,9 @@ export default {
     }
   },
   methods: {
+    open_Pinterest() {
+      this.$router.push({name: 'PinterestView'})
+    },
     close_modal() {
       document.getElementById("myModal").style.display = 'none'
     },
@@ -39,6 +42,25 @@ export default {
 </script>
 
 <style scoped>
+
+.icons {
+  width: 150px;
+  height: 150px;
+}
+
+.buttons_modal_entertainment {
+  background: transparent;
+  margin: 5%;
+  margin-top: 8%;
+  border: white
+}
+
+.buttons_modal_entertainment:hover {
+  cursor: pointer;
+  transform: scale(1.25);
+  background: #FFF;
+  color: #000;
+}
 
 body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -59,11 +81,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Modal Content */
 .modal-content {
+  text-align: center;
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  border: none;
+  width: 40%;
+  border-radius: 8px;
 }
 
 /* The Close Button */
@@ -76,9 +100,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 .close:hover,
 .close:focus {
-  color: #000;
+  color: red;
   text-decoration: none;
   cursor: pointer;
 }
+
+
 
 </style>

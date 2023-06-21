@@ -3,7 +3,7 @@
     <nav>
       <router-link to="/">
 
-        <button style="background: transparent; margin-left: 1%; margin-top: 0%; border: white">
+        <button class="button_home">
           <img v-bind:src="require(`@/assets/${icon_hm}`)" alt="HM" width="50" height="50">
         </button>
 
@@ -14,7 +14,7 @@
 
     <PlatformsTabs></PlatformsTabs>
 
-    <button v-on:click="activare_dark_mode" class="dark-mode" style="background: transparent; margin-left: 90%; margin-top: 1%; border: white">
+    <button v-on:click="activare_dark_mode" class="button_dark_mode">
       <img v-bind:src="require(`@/assets/${icon_dm}`)" alt="DM" width="50" height="50">
     </button>
 
@@ -57,6 +57,32 @@ body {
 .dark-mode {
   background-color: dimgrey;
   color: white;
+}
+
+.button_home {
+  background: transparent;
+  margin-left: 1%;
+  margin-top: 0%;
+  border: white
+}
+
+.button_home:hover {
+  cursor: pointer;
+  transform: scale(1.25);
+  background: #FFF;
+  color: #000;
+}
+
+.button_dark_mode {
+  background: transparent;
+  margin-left: 95%;
+  margin-top: 1%;
+  border: white;
+}
+
+.button_dark_mode:hover {
+  cursor: pointer;
+  transform: scale(1.25);
 }
 
 </style>
